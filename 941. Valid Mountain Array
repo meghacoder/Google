@@ -1,0 +1,104 @@
+https://leetcode.com/problems/valid-mountain-array/description/
+941. Valid Mountain Array
+Solved
+Easy
+Topics
+Companies
+Hint
+Given an array of integers arr, return true if and only if it is a valid mountain array.
+
+Recall that arr is a mountain array if and only if:
+
+arr.length >= 3
+There exists some i with 0 < i < arr.length - 1 such that:
+arr[0] < arr[1] < ... < arr[i - 1] < arr[i] 
+arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
+
+ 
+
+Example 1:
+
+Input: arr = [2,1]
+Output: false
+Example 2:
+
+Input: arr = [3,5,5]
+Output: false
+Example 3:
+
+Input: arr = [0,3,2,1]
+Output: true
+ 
+
+Constraints:
+
+1 <= arr.length <= 104
+0 <= arr[i] <= 104
+Seen this question in a real interview before?
+1/5
+Yes
+No
+Accepted
+458.1K
+Submissions
+1.4M
+Acceptance Rate
+33.7%
+Topics
+Companies
+0 - 6 months
+Google
+3
+6 months ago
+Amazon
+4
+Microsoft
+2
+Adobe
+2
+Uber
+2
+
+
+
+
+
+//code 
+
+int increasing_last_index(vector<int> &a, int n)
+{
+    int index=n-1;
+    for(int i=1;i<n;i++)
+    {
+        if(a[i-1]>=a[i])
+        return (i-1);
+    }
+    return index;
+
+}
+
+
+// index should be equal
+
+class Solution {
+public:
+    bool validMountainArray(vector<int>& a) {
+        int n=a.size();
+        if(n==1)
+        return 0;
+        int index1=increasing_last_index(a, n);
+        reverse(a.begin(), a.end());
+        int index2=increasing_last_index(a, n);
+        index2=n-index2-1;
+        if(index1!=index2)
+        return 0;
+        else
+        {
+            if(index1==0 || index1 ==n-1)
+            return 0;
+            return 1;
+        }
+        return 1;
+        
+    }
+};
